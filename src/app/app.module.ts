@@ -13,15 +13,15 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorService } from './services/utils/error.service';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
+import { SharedComponentsModule } from './shared/shared-components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    SidenavComponent
   ],
   imports: [
+    SharedComponentsModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
