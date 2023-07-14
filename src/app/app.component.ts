@@ -1,11 +1,6 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
-import { Router } from '@angular/router';
 import { setTheme } from 'ngx-bootstrap/utils';
-
-interface SideNavToggle {
-  screenWidth: number;
-  collapsed: boolean;
-}
+import { LoginService } from './services/login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -15,19 +10,22 @@ interface SideNavToggle {
 
 export class AppComponent implements OnInit {
 
-  title = 'sidenav';
-  isSideNavCollapsed = false;
-  screenWidth = 0;
-
   constructor(
-    private router: Router
+    private loginService: LoginService,
   ) {
     setTheme('bs5');
 
   }
 
-  ngOnInit() {
+  get logado(): boolean {
+    return localStorage.getItem('token') ? true : false;
+  }
 
+  deslogar() {
+    this.loginService.Logoff();
+  }
+
+  ngOnInit() {
     if (isDevMode()) {
       console.info(`%cDevelopment!`, "color: green; font-size: 2em");
     } else {
@@ -36,11 +34,5 @@ export class AppComponent implements OnInit {
       console.info(`%cPlease proceed with caution.`, "color: orange; font-size: 1.5em;");
     }
   }
-
-  onToggleSideNav(data: SideNavToggle): void {
-    this.screenWidth = data.screenWidth;
-    this.isSideNavCollapsed = data.collapsed;
-  }
-
 
 }

@@ -42,7 +42,6 @@ interface SideNavToggle {
 export class SideNavComponent implements OnInit {
 
   constructor(
-    private router: Router
   ) {
 
   }

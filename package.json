@@ -1,32 +1,34 @@
 {
-  "name": "angular-dashboard",
+  "name": "influencers-dashboard",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o -c development",
+    "dev": "ng serve -o -c development --port 4000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "dev": "ng serve -c development",
-    "prod": "ng serve -c production"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.1.0",
-    "@angular/cdk": "^15.2.9",
     "@angular/common": "^15.1.0",
     "@angular/compiler": "^15.1.0",
     "@angular/core": "^15.1.0",
+    "@angular/fire": "^7.6.1",
     "@angular/forms": "^15.1.0",
     "@angular/material": "^15.2.9",
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@swimlane/ngx-datatable": "^20.1.0",
     "bootstrap": "^5.1.3",
     "bootstrap-icons": "^1.10.3",
     "bootstrap-select": "^1.13.18",
     "bootswatch": "^5.2.3",
     "jquery": "^3.6.3",
+    "lodash": "^4.17.21",
+    "lodash.isequal": "^4.5.0",
     "moment": "^2.29.4",
     "ngx-bootstrap": "^10.2.0",
     "ngx-bootstrap-icons": "^1.9.2",
@@ -44,8 +46,8 @@
     "@angular-devkit/build-angular": "^15.1.1",
     "@angular/cli": "~15.1.1",
     "@angular/compiler-cli": "^15.1.0",
-    "@schematics/angular": "^16.1.4",
     "@types/jasmine": "~4.3.0",
+    "@types/lodash": "^4.14.194",
     "@types/node": "^18.14.6",
     "@typescript-eslint/eslint-plugin": "^3.9.1",
     "@typescript-eslint/parser": "^3.9.1",
@@ -64,6 +66,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "^2.8.8",
-    "typescript": "4.8.2"
+    "typescript": "~4.9.4"
   }
 }

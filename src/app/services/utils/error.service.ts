@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 
-export class ErrorService {
 
+export class ErrorService {
   constructor() { }
 
   public static handleError(error: HttpErrorResponse) {

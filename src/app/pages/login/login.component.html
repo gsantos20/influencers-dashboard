@@ -1,0 +1,164 @@
+<section class="vh-100">
+  <div class="banner"></div>
+  <div class="container-fluid h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div
+        class="d-flex justify-content-center col-8 col-sm-8 col-md-7 col-lg-5"
+      >
+        <img
+          src="../../../../assets/images/influencer.svg"
+          class="img-fluid w-auto h-auto"
+          alt=""
+        />
+      </div>
+      <div class="col-sm-11 col-md-10 col-lg-6 col-xxl-5 offset-xxl-1">
+        <div class="card p-2 rounded-5 border-0" id="cardLogin">
+          <div class="card-body p-4">
+            <h1 class="text-center text-white">Login</h1>
+            <form [formGroup]="form" (ngSubmit)="login()">
+              <div class="row mt-4">
+                <div class="form-group col-12">
+                  <label class="form-label" for="Email">E-mail</label>
+                  <input
+                    [class.is-invalid]="
+                      f.Email.errors && (f.Email.touched || f.Submited.value)
+                    "
+                    type="text"
+                    id="Email"
+                    class="form-control form-control-lg"
+                    placeholder="Digite o E-mail"
+                    formControlName="Email"
+                  />
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="form-group col-12">
+                  <label class="form-label" for="Password">Senha</label>
+                  <input
+                    [class.is-invalid]="
+                      f.Password.errors &&
+                      (f.Password.touched || f.Submited.value)
+                    "
+                    type="password"
+                    id="Password"
+                    class="form-control fs-6 form-control-lg"
+                    placeholder="Digite Senha"
+                    formControlName="Password"
+                    requiredminlength="3"
+                  />
+                </div>
+              </div>
+
+              <div class="mt-2">
+                <div class="row">
+                  <div class="col-12 text-end">
+                    <a
+                      href="javascript:function(0)"
+                      (click)="openModal($event, modalRegistro)"
+                      class="text-black text-decoration-none"
+                      >Primeiro Acesso?</a
+                    >
+                  </div>
+                </div>
+                <div class="row mt-4 d-flex justify-content-center">
+                  <button
+                    type="submit"
+                    class="btn btn-primary fs-5 btn-lg p-2 w-75"
+                  >
+                    Entrar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #modalRegistro>
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel" style="font-family: 'Poppins'">
+      <b>Primeiro Acesso</b>
+    </h4>
+    <button type="button" class="btn-close" (click)="modalRef?.hide()"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form2" class="form-horizontal">
+      <div class="row">
+        <div class="col-sm-4">
+          <label class="form-label">Nome:</label>
+          <input
+            type="text"
+            value=""
+            class="form-control"
+            [class.is-invalid]="
+              f.Password.errors && (f.Password.touched || f.Submited.value)
+            "
+          />
+        </div>
+        <div class="col-sm-3">
+          <label class="form-label">Sobrenome:</label>
+          <input
+            type="text"
+            value=""
+            class="form-control"
+            [class.is-invalid]="
+              f.Password.errors && (f.Password.touched || f.Submited.value)
+            "
+          />
+        </div>
+        <div class="col-sm-5">
+          <label class="form-label">Email:</label>
+          <input
+            type="text"
+            value=""
+            class="form-control"
+            [class.is-invalid]="
+              f.Password.errors && (f.Password.touched || f.Submited.value)
+            "
+          />
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-sm-4">
+          <label class="form-label">Senha:</label>
+          <input
+            type="password"
+            value=""
+            class="form-control"
+            [class.is-invalid]="
+              f.Password.errors && (f.Password.touched || f.Submited.value)
+            "
+          />
+        </div>
+        <div class="col-sm-4">
+          <label class="form-label">Confirme a Senha:</label>
+          <input
+            type="password"
+            value=""
+            class="form-control"
+            [class.is-invalid]="
+              f.Password.errors && (f.Password.touched || f.Submited.value)
+            "
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn me-3"
+      style="background: #d3d1d18f"
+      (click)="modalRef?.hide()"
+    >
+      Fechar <i class="bi bi-x"></i>
+    </button>
+    <button type="button" style="background: #d3d1d18f" class="btn">
+      Cadastrar <i class="bi bi-check"></i>
+    </button>
+  </div>
+</ng-template>

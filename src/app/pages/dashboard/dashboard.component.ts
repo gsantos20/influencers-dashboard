@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Card } from '../../models/cards';
+
+
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
+
 
 @Component({
   selector: 'app-dashboard',
@@ -9,17 +14,20 @@ import { Card } from '../../models/cards';
 })
 export class DashboardComponent implements OnInit {
 
+  title = 'sidenav';
+  isSideNavCollapsed = false;
+  screenWidth = 0;
+
   constructor() {}
   /** Based on the screen size, switch from standard to one column per row */
-    cards: Card[] =  [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
 
 
   ngOnInit(){
 
+  }
+
+  onToggleSideNav(data: SideNavToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapsed;
   }
 }
