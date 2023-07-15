@@ -2,33 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, catchError, map, retry, timeout } from 'rxjs';
+import { Observable, map, timeout, retry, catchError } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { Results } from 'src/app/models/results';
 import { FunctionsService } from 'src/app/shared/functions/functions.service';
+import { environment } from 'src/environments/environment';
 import { LoginService } from '../login/login.service';
-import { User } from 'src/app/models/User';
-import { environment } from 'src/environments/environment.development';
 import { ErrorService } from '../utils/error.service';
+import { Influencer } from 'src/app/models/Influencer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class InfluencerService {
+  baseTelaURL = '/influencer';
 
-  baseTelaURL = '/user';
+    constructor(
+      private http: HttpClient,
+      private loginService: LoginService,
+      private router: Router,
+      private functionsService: FunctionsService,
+      private toastr: ToastrService
+    ) { }
 
-  constructor(
-    private http: HttpClient,
-    private loginService: LoginService,
-    private router: Router,
-    private functionsService: FunctionsService,
-    private toastr: ToastrService
-  ) { }
 
-  public GetUsers(parametros: Partial<User>): Observable<Results<User[]>> {
+  public GetInfluencer(parametros: Partial<Influencer>): Observable<Results<Influencer[]>> {
     return this.http
       .get<Results<Partial<User>>>(
-        `${environment.apiURL}/users?`
+        `${environment.apiURL}/influencers?`
         + FunctionsService.jsonToQueryString(parametros)
       )
       .pipe(
@@ -44,7 +45,7 @@ export class UserService {
       );
   }
 
-  public CreateUser(dados: User): Observable<Results<User>> {
+  public CreateInfluencer(dados: Omit<User, '_id'>): Observable<Results<User>> {
     return this.http
       .post<Results<User[]>>(
         `${environment.apiURL}` + this.baseTelaURL,
@@ -63,7 +64,7 @@ export class UserService {
       );
   }
 
-  public DeleteUser(id: number): Observable<any> {
+  public DeleteInfluencer(id: number): Observable<any> {
     return this.http
       .delete(
         `${environment.apiURL}` +
@@ -86,29 +87,5 @@ export class UserService {
 
   tratarError(result: any): any {
     this.toastr.error(result);
-  }
-
-  get getId(): string {
-    var getToken = localStorage.getItem('login');
-    return getToken
-      ? JSON.parse(atob(getToken))._id
-      : null;
-  }
-
-  get getToken(): string {
-    var getToken = localStorage.getItem('login');
-    return getToken
-      ? JSON.parse(atob(getToken)).token
-      : null;
-  }
-
-  get logged(): boolean {
-    var getToken = localStorage.getItem('login');
-    var getTokenCookie = this.functionsService.getCookie('login');
-
-    getToken ? (JSON.parse(atob(getToken)) as User)._id : null;
-    getTokenCookie ? "ok" : null;
-
-    return getToken && getTokenCookie ? true : false;
   }
 }
