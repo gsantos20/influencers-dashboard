@@ -7,64 +7,69 @@
       >
         <img
           src="../../../../assets/images/influencer.svg"
-          class="img-fluid w-auto h-auto"
+          class="img-fluid w-75 h-75"
           alt=""
         />
       </div>
       <div class="col-sm-11 col-md-10 col-lg-6 col-xxl-5 offset-xxl-1">
         <div class="card p-2 rounded-5 border-0" id="cardLogin">
           <div class="card-body p-4">
-            <h1 class="text-center text-white">Login</h1>
-            <form [formGroup]="form" (ngSubmit)="login()">
+            <h1 class="text-center">Login</h1>
+            <form [formGroup]="form" (ngSubmit)="Sign()">
               <div class="row mt-4">
                 <div class="form-group col-12">
-                  <label class="form-label" for="Email">E-mail</label>
+                  <label class="form-label fw-medium" for="Email"
+                    >E-mail : <b style="color: red">*</b></label
+                  >
                   <input
                     [class.is-invalid]="
                       f.Email.errors && (f.Email.touched || f.Submited.value)
                     "
                     type="text"
-                    id="Email"
                     class="form-control form-control-lg"
-                    placeholder="Digite o E-mail"
+                    placeholder="Digite o e-mail"
                     formControlName="Email"
+                    name="Email"
                   />
                 </div>
               </div>
 
               <div class="row mt-3">
                 <div class="form-group col-12">
-                  <label class="form-label" for="Password">Senha</label>
+                  <label class="form-label fw-medium" for="Password"
+                    >Senha: <b style="color: red">*</b></label
+                  >
                   <input
                     [class.is-invalid]="
                       f.Password.errors &&
                       (f.Password.touched || f.Submited.value)
                     "
                     type="password"
-                    id="Password"
                     class="form-control fs-6 form-control-lg"
-                    placeholder="Digite Senha"
+                    placeholder="Digite a senha"
                     formControlName="Password"
+                    name="Password"
                     requiredminlength="3"
                   />
                 </div>
               </div>
 
-              <div class="mt-2">
+              <div class="mt-3">
                 <div class="row">
                   <div class="col-12 text-end">
                     <a
                       href="javascript:function(0)"
                       (click)="openModal($event, modalRegistro)"
-                      class="text-black text-decoration-none"
-                      >Primeiro Acesso?</a
+                      class="fw-medium text-black text-decoration-none"
+                      >Primeiro Acesso</a
                     >
                   </div>
                 </div>
-                <div class="row mt-4 d-flex justify-content-center">
+                <div class="row mt-5 d-flex justify-content-center">
                   <button
                     type="submit"
-                    class="btn btn-primary fs-5 btn-lg p-2 w-75"
+                    style="background-color: #03669f8a"
+                    class="btn text-white fs-5 btn-lg p-2 w-75"
                   >
                     Entrar
                   </button>
@@ -89,61 +94,94 @@
     <form [formGroup]="form2" class="form-horizontal">
       <div class="row">
         <div class="col-sm-4">
-          <label class="form-label">Nome:</label>
+          <label class="form-label">Nome: <b style="color: red">*</b></label>
           <input
             type="text"
-            value=""
             class="form-control"
+            formControlName="FirstName"
+            name="FirstName"
+            placeholder="Digite seu nome"
             [class.is-invalid]="
-              f.Password.errors && (f.Password.touched || f.Submited.value)
+              f2.FirstName.errors && (f2.FirstName.touched || f2.Submited.value)
             "
           />
         </div>
         <div class="col-sm-3">
-          <label class="form-label">Sobrenome:</label>
+          <label class="form-label"
+            >Sobrenome: <b style="color: red">*</b></label
+          >
           <input
             type="text"
-            value=""
             class="form-control"
+            formControlName="LastName"
+            name="LastName"
+            placeholder="Digite seu sobrenome"
             [class.is-invalid]="
-              f.Password.errors && (f.Password.touched || f.Submited.value)
+              f2.LastName.errors && (f2.LastName.touched || f2.Submited.value)
             "
           />
         </div>
         <div class="col-sm-5">
-          <label class="form-label">Email:</label>
+          <label class="form-label">E-mail: <b style="color: red">*</b></label>
           <input
             type="text"
-            value=""
             class="form-control"
+            placeholder="Digite seu e-mail"
+            formControlName="Email"
+            name="Email"
             [class.is-invalid]="
-              f.Password.errors && (f.Password.touched || f.Submited.value)
+              f2.Email.errors && (f2.Email.touched || f2.Submited.value)
             "
           />
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-sm-4">
-          <label class="form-label">Senha:</label>
+          <label class="form-label">Senha: <b style="color: red">*</b></label>
           <input
             type="password"
-            value=""
             class="form-control"
+            placeholder="Digite sua senha"
+            formControlName="Password"
+            name="Password"
+            (keyup)="
+              matchPass(
+                form2.controls['Password'],
+                form2.controls['PasswordConfirm']
+              )
+            "
             [class.is-invalid]="
-              f.Password.errors && (f.Password.touched || f.Submited.value)
+              f2.Password.errors && (f2.Password.touched || f2.Submited.value)
             "
           />
         </div>
         <div class="col-sm-4">
-          <label class="form-label">Confirme a Senha:</label>
+          <label class="form-label"
+            >Confirme a Senha: <b style="color: red">*</b></label
+          >
           <input
             type="password"
-            value=""
             class="form-control"
+            placeholder="Digite sua senha novamente"
+            formControlName="PasswordConfirm"
+            name="PasswordConfirm"
+            (keyup)="
+              matchPass(
+                form2.controls['Password'],
+                form2.controls['PasswordConfirm']
+              )
+            "
             [class.is-invalid]="
-              f.Password.errors && (f.Password.touched || f.Submited.value)
+              f2.PasswordConfirm.errors &&
+              (f2.PasswordConfirm.touched || f2.Submited.value)
             "
           />
+          <div
+            *ngIf="!f2.PasswordConfirm.errors?.matchPass"
+            class="invalid-feedback"
+          >
+            <sup>As senhas não coincidem</sup>
+          </div>
         </div>
       </div>
     </form>
@@ -155,10 +193,15 @@
       style="background: #d3d1d18f"
       (click)="modalRef?.hide()"
     >
-      Fechar <i class="bi bi-x"></i>
+      Fechar <i class="bi bi-x-lg"></i>
     </button>
-    <button type="button" style="background: #d3d1d18f" class="btn">
-      Cadastrar <i class="bi bi-check"></i>
+    <button
+      type="button"
+      style="background: #d3d1d18f"
+      (click)="SignUp()"
+      class="btn"
+    >
+      Cadastrar <i class="bi bi-check-lg"></i>
     </button>
   </div>
 </ng-template>
