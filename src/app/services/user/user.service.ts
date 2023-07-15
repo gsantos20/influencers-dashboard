@@ -25,7 +25,26 @@ export class UserService {
     private toastr: ToastrService
   ) { }
 
-  public post(dados: User): Observable<Results<User>> {
+  public GetUsers(dados: Partial<User>): Observable<Results<User[]>> {
+    return this.http
+      .post<Results<Partial<User>>>(
+        `${environment.apiURL}` + '/users',
+        dados
+      )
+      .pipe(
+        map((response: any) => {
+          if (!response.success) {
+            this.tratarError(response.data);
+          }
+          return response;
+        }),
+        timeout(environment.timeoutPost),
+        retry(0),
+        catchError(ErrorService.handleError)
+      );
+  }
+
+  public CreateUser(dados: User): Observable<Results<User>> {
     return this.http
       .post<Results<User[]>>(
         `${environment.apiURL}` + this.baseTelaURL,
@@ -44,7 +63,7 @@ export class UserService {
       );
   }
 
-  public delete(id: number): Observable<any> {
+  public DeleteUser(id: number): Observable<any> {
     return this.http
       .delete(
         `${environment.apiURL}` +
