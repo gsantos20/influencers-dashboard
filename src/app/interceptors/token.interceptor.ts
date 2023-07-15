@@ -65,7 +65,7 @@ export class TokenInterceptor implements HttpInterceptor {
         'Pragma': 'no-cache',
         'Expires': '0',
         'Content-Type': 'application/json',
-        'Authorization': `Bearer :${this.userService.getToken}`,
+        'Authorization': `Bearer ${this.userService.getToken}`,
       })
     });
   }
