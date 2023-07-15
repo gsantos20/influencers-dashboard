@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { HttpCancelService } from '../services/utils/http-cancel.service';
 import { ErrorService } from '../services/utils/error.service';
 import { UserService } from '../services/user/user.service';
+import * as _ from 'lodash';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -33,7 +34,7 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
     //console.log(request.url)
-    if (this.isInBlockedList(request.url)) {
+    if (this.isInBlockedList({ url: request.url, method: request.method })) {
       return next.handle(request);
     } else {
       return next.handle(this.addToken(request))
@@ -45,16 +46,17 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   // Filtra as urls que não usarão o token
-  private isInBlockedList(url: string): Boolean {
-    if (url == `${environment.apiURL}/login`
-    ) {
-      return true;
-    } else {
-      return false;
-    }
+  private isInBlockedList(item: { url: string, method: string } ): Boolean {
+
+    const blockedList = [
+      { url: `${environment.apiURL}/user`, method: 'POST' },
+      { url: `${environment.apiURL}/login`, method: 'POST' }
+    ]
+
+     return blockedList.some((obj) => _.isEqual(obj, item))
   }
 
-  // ADiciona o token à requisição
+  // Adiciona o token à requisição
   private addToken(request: HttpRequest<any>) {
      //console.log(`${environment.apiKey}:${this.headerService.apiTkUser}`)
     return request = request.clone({
