@@ -2,10 +2,15 @@ import { ItemNav } from "src/app/models/itemNav";
 
 export const navbarData: ItemNav[] = [
   {
-      routeLink: 'dashboard',
+      routeLink: '/',
       icon: 'fal fa-home',
       label: 'Dashboard'
-  }
+  },
+  {
+    routeLink: '/influencers/list',
+    icon: 'fal fa-users',
+    label: 'Influencers'
+}
   /*{
       routeLink: 'products',
       icon: 'fal fa-box-open',
