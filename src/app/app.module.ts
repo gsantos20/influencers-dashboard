@@ -15,18 +15,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorService } from './services/utils/error.service';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SharedComponentsModule } from './shared/shared-components.module';
-import { LoginComponent } from './pages/login/login.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    LoginComponent,
+    AppComponent
   ],
   imports: [
+    PagesModule,
     SharedComponentsModule,
     BrowserModule,
     FormsModule,
@@ -36,7 +34,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 6000,
+      timeOut: 4000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       progressBar: true

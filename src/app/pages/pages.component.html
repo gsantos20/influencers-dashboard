@@ -1,0 +1,11 @@
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-body
+  [collapsed]="isSideNavCollapsed"
+  [screenWidth]="screenWidth"
+></app-body>
+<section id="home-section" class="home-section">
+  <app-topnav></app-topnav>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</section>
