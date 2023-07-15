@@ -3,6 +3,8 @@
 /* Importing Bootstrap SCSS file. */
 @import './node_modules/bootstrap/scss/bootstrap.scss';
 
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
 /* Importing Datepicker SCSS file. */
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.scss';
 
