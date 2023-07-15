@@ -4,5 +4,5 @@ export const environment = {
   timeoutPost:10000,
   timeoutDelete:10000,
   timeoutUpdate:10000,
-  apiURL:"https://api-influencers-gsantos20.vercel.app/api/v1/",
+  apiURL:"http://localhost:3000/api/v1",
 };

@@ -83,22 +83,22 @@ ngx-select.is-invalid .form-control {
   border-color: #dc3545 !important;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  margin: 1.25rem 0 1.25rem 0;
-  box-shadow: 0 0.25rem 0.5rem #e6edef;
+.home-section .container-fluid {
+  width: auto !important;
+  padding-top: 67px;
+  // padding-right: 30px;
 }
 
-.card-head {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #edf1f7;
-  font-size: 1rem;
-  font-weight: 600;
+.home-section.full {
+  width: 100%;
+  left: 0;
 }
 
-.card-body {
-  padding: 1rem 1.5rem;
+.home-section {
+  position: relative;
+  /*    background: #E4E9F7;
+    height: 100vh;*/
+  left: 5rem;
+  width: calc(100% - 5rem);
+  transition: all 0.5s ease;
 }
