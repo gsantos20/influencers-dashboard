@@ -1,0 +1,18 @@
+<div
+  class="d-flex p-2 my-2 text-white rounded shadow-sm"
+  style="background-color: #097bbda8 !important"
+>
+  <div class="d-flex align-itens-center mr-auto">
+    <i class="{{ iconClass }} "></i>
+    <div class="lh-100">
+      <h4 class="mb-0">{{ titulo }}</h4>
+      <!-- <small> {{subtitulo}}</small> -->
+    </div>
+  </div>
+
+  <div class="p-3" *ngIf="botaoListar">
+    <button class="btn btn-outline-light" (click)="listar()">
+      Listar {{ titulo }}
+    </button>
+  </div>
+</div>

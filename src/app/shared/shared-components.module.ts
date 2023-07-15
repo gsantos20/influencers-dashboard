@@ -5,11 +5,15 @@ import { SideNavComponent } from './sidenav/sidenav.component';
 import { NgxMaskPipe, NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 import { NgxSelectModule } from 'ngx-select-ex';
 import { RouterModule } from '@angular/router';
+import { TopNavComponent } from './topnav/topnav.component';
+import { TituloComponent } from './titulo/titulo.component';
 
 
 @NgModule({
   declarations: [
-    SideNavComponent
+    SideNavComponent,
+    TopNavComponent,
+    TituloComponent
   ],
   imports: [
     RouterModule,
@@ -21,7 +25,9 @@ import { RouterModule } from '@angular/router';
     NgxMaskDirective
   ],
   exports: [
-    SideNavComponent
+    SideNavComponent,
+    TopNavComponent,
+    TituloComponent
   ],
   providers: [
     NgxMaskPipe,
