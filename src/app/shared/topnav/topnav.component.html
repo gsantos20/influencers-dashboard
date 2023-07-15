@@ -1,0 +1,84 @@
+<div class="navbar-fixed-top">
+  <div class="navbar-header">
+    <ul class="nav navbar-nav navbar-right d-block d-sm-none">
+      <li class="dropdown">
+        <a
+          class="dropdown-toggle"
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            alt="user-img"
+            class="img-avatar"
+            src="../../../assets/images/default-user-sm.png"
+          />&nbsp;<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="text-center conta">
+            <small><strong>Conta</strong></small>
+          </li>
+          <li>
+            <hr class="dropdown-divider" style="margin-top: 0" />
+          </li>
+          <li>
+            <label class="text-right p-2">{{ FirstName }} </label>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#"
+              ><i class="fa fa-user"></i>&nbsp;&nbsp;Perfil</a
+            >
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" (click)="LogOff()"
+              ><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Sair</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <label class="text-right p-2">{{ FirstName }} </label>
+      </li>
+      <li class="dropdown">
+        <a
+          class="dropdown-toggle"
+          href="#"
+          onclick="return false"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            alt="user-img"
+            class="img-avatar"
+            src="../../../assets/images/default-user-sm.png"
+          />&nbsp;<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li class="text-center conta">
+            <small><strong>Conta</strong></small>
+          </li>
+          <li>
+            <hr class="dropdown-divider" style="margin-top: 0" />
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" (click)="LogOff()"
+              ><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Sair</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
