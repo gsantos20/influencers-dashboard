@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AbstractControl, Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/User';
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private loginService: LoginService,
     private userService: UserService,
     private functionsService: FunctionsService,
@@ -94,10 +96,16 @@ export class LoginComponent implements OnInit {
           if (_dados.success) {
             this.functionsService.setCookie('login', _dados.data, 43200, '/');
             localStorage.setItem('login', btoa(JSON.stringify(_dados.data)));
+
+            this.toastr.success('Login realizado com sucesso!').onHidden.subscribe((...args) => {
+              this.router.navigate(['/dashboard']);
+            });
+
+
           }
         },
         error: (error: any) => {
-          this.toastr.error(error);
+          this.toastr.error(error.error.data);
         },
         complete: () => {
         },
@@ -131,7 +139,7 @@ export class LoginComponent implements OnInit {
             }
           },
           error: (error: any) => {
-            this.toastr.error(error);
+            this.toastr.error(error.error.data);
           },
           complete: () => {
           },
