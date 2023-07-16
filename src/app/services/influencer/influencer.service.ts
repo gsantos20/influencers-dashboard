@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { LoginService } from '../login/login.service';
 import { ErrorService } from '../utils/error.service';
 import { Influencer } from 'src/app/models/Influencer';
+import { omit } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,25 @@ export class InfluencerService {
       );
   }
 
+  public GetInfluencerById(_id: string): Observable<Results<Influencer>> {
+    return this.http
+      .get<Results<Partial<User>>>(
+        `${environment.apiURL}/influencer/`
+        + _id
+      )
+      .pipe(
+        map((response: any) => {
+          if (!response.success) {
+            this.tratarError(response.data);
+          }
+          return response;
+        }),
+        timeout(environment.timeoutPost),
+        retry(0),
+        catchError(ErrorService.handleError)
+      );
+  }
+
   public CreateInfluencer(dados: Omit<User, '_id'>): Observable<Results<User>> {
     return this.http
       .post<Results<User[]>>(
@@ -63,6 +83,27 @@ export class InfluencerService {
         catchError(ErrorService.handleError)
       );
   }
+
+  public UpdateInfluencer(dados: Partial<User>): Observable<Results<User>> {
+    const data = omit(dados, '_id')
+    return this.http
+      .patch<Results<User[]>>(
+        `${environment.apiURL}${this.baseTelaURL}/` + dados._id,
+        data
+      )
+      .pipe(
+        map((response: any) => {
+          if (!response.success) {
+            this.tratarError(response.data);
+          }
+          return response;
+        }),
+        timeout(environment.timeoutPost),
+        retry(0),
+        catchError(ErrorService.handleError)
+      );
+  }
+
 
   public DeleteInfluencer(id: number): Observable<any> {
     return this.http
