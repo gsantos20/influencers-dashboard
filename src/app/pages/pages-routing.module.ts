@@ -23,7 +23,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'list', pathMatch: 'full' },
           { path: 'list', component: InfluencersListComponent },
           { path: 'detail', component: InfluencersDetailComponent },
-          { path: 'detail/:id/', component: InfluencersDetailComponent },
+          { path: 'detail/:_id', component: InfluencersDetailComponent },
         ],
       },
     ]

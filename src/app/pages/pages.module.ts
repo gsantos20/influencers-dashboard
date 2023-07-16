@@ -17,6 +17,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../interceptors/token.interceptor';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { AjaxInterceptor } from '../interceptors/ajax.interceptor';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     provideEnvironmentNgxMask(),
+    { provide: HTTP_INTERCEPTORS, useClass: AjaxInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
 })
