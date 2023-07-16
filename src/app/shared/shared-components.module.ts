@@ -7,13 +7,15 @@ import { NgxSelectModule } from 'ngx-select-ex';
 import { RouterModule } from '@angular/router';
 import { TopNavComponent } from './topnav/topnav.component';
 import { TituloComponent } from './titulo/titulo.component';
+import { ModalDeleteComponent } from './modal/modal-delete/modal-delete.component';
 
 
 @NgModule({
   declarations: [
     SideNavComponent,
     TopNavComponent,
-    TituloComponent
+    TituloComponent,
+    ModalDeleteComponent
   ],
   imports: [
     RouterModule,
@@ -27,7 +29,8 @@ import { TituloComponent } from './titulo/titulo.component';
   exports: [
     SideNavComponent,
     TopNavComponent,
-    TituloComponent
+    TituloComponent,
+    ModalDeleteComponent
   ],
   providers: [
     NgxMaskPipe,

@@ -1,0 +1,28 @@
+<div class="inner-content">
+  <div class="row me-0 ms-0" >
+    <div class="col-sm-2 icon danger">
+      <i class="fa fa-warning"></i>
+    </div>
+    <div class="col-sm-10 content-container">
+      <div class="row">
+        <div class="col-sm-12 mb-3">
+          <h5><strong>ATENÇÃO!</strong></h5>
+        </div>
+      </div>
+      <div class="row" *ngIf="message">
+        <div class="col-sm-12">
+          <label>Tem certeza que quer desativar este registro?</label>
+          <div class="alert alert-secondary mt-3 centered">
+            <h5 class="fs-6 text-danger mb-0"> {{message}} </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngFor="let button of buttons; let i = index" class="btn {{buttonType(button)}}"
+    [class.me-3]="i < 1" (click)="handler(button)">
+    <span [innerHTML]="button.text"></span>&nbsp;<i class="bi {{button.iconClass}}"></i>
+  </button>
+  </div>
+</div>
