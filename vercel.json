@@ -1,11 +1,6 @@
 {
-  "git": {
-    "deploymentEnabled": {
-      "main": false
-    }
-  },
   "version": 2,
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "ng build --output-hashing=all --configuration production",
   "builds": [
     {
       "src": "dist/*",
