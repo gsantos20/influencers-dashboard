@@ -13,7 +13,7 @@
         [(ngModel)]="pesquisaViewModel.EmailInfluencer"/>
     </div>
     <div class="col-xs-12 col-md-4">
-      <label class="form-label">Nome do Canal</label>
+      <label class="form-label">Username do Canal</label>
       <input type="text" class="form-control" name="ChannelUsername"
         [class.is-invalid]="pesquisaViewModel.SubmitedErr && !pesquisaViewModel.ChannelUsername"
         [(ngModel)]="pesquisaViewModel.ChannelUsername"/>
@@ -51,7 +51,7 @@
   <div class="row d-flex mb-3" *ngIf="pesquisaViewModel.Submited">
     <div class="col-xs-12 col-sm-3 col-md-12">
       <div class="d-xs-block d-sm-block float-end">
-        <a class="btn btn-primary" routerLink="/influencer/datail">
+        <a class="btn btn-primary" routerLink="/influencers/detail">
           <i class="fa fa-plus-circle my-1"></i> &nbsp;
           <b>Novo</b>
         </a>
@@ -67,7 +67,7 @@
           <tr>
             <th class="d-none d-md-table-cell">Nome</th>
             <th class="d-none d-md-table-cell">Plataforma</th>
-            <th class="d-none d-md-table-cell">Nome do Canal</th>
+            <th class="d-none d-md-table-cell">Username do Canal</th>
             <th class="d-none d-md-table-cell">Seguidores</th>
             <th class="d-none d-md-table-cell">Tipo de Conteudo</th>
             <th [width]="150"></th>
@@ -82,16 +82,16 @@
             <td class="d-none d-md-table-cell"> {{ item.NumSubs }} </td>
             <td class="d-none d-md-table-cell"> {{ item.ContentCategory }} </td>
             <td style="text-align: right;">
-              <!-- <button type="button" class="btn btn-outline-primary btn-sm"
+              <button type="button" class="btn btn-outline-primary btn-sm"
                 (click)="detailEvent(item._id)">
                 <i class="fa fa-edit"></i>
               </button>
               &nbsp;
               <button type="button"
                 class="btn btn-outline-danger btn-sm"
-                (click)="openModal($event, modalCancelar, modalConfigCancelar, item)">
+                (click)="openModal($event, modalExcluir, item._id, item.NameInfluencer)">
                 <i class="fa fa-trash"></i>
-              </button> -->
+              </button>
             </td>
           </tr>
         </tbody>
@@ -112,8 +112,8 @@
   </div>
 </div>
 
-<!-- <ng-template #modalCancelar>
-  <app-modal-observacao [id]="modalConfigCancelar.id" [title]="modalConfigCancelar.title"
-    [modalType]="modalConfigCancelar.type" [buttons]="modalConfigCancelar.buttons">
-  </app-modal-observacao>
-</ng-template> -->
+<ng-template #modalExcluir>
+  <app-modal-delete [id]="modalConfigExcluir.id" [message]="modalConfigExcluir.message"
+    [buttons]="modalConfigExcluir.buttons"></app-modal-delete>
+</ng-template>
+

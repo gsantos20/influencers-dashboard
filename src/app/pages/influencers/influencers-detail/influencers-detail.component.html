@@ -1,0 +1,92 @@
+<div class="card rounded shadow-sm ">
+  <form [formGroup]="form">
+
+    <!-- <p>Form value: {{ form.value | json }}</p>
+    <p>Form valid: {{ form.status }}</p> -->
+
+    <div class="p-3">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label class="form-label">Nome do influenciador <b style="color: red;">*</b></label>
+          <input type="text" class="form-control"
+          [ngClass]="{'is-invalid' : f.NameInfluencer.errors && f.NameInfluencer.touched}"
+          formControlName="NameInfluencer" placeholder="Digite o nome do influenciador">
+          <div *ngIf="f.NameInfluencer.errors?.required" class="invalid-feedback">
+            Nome do influenciador é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label">E-mail do influenciador <b style="color: red;">*</b></label>
+          <input type="text" class="form-control "
+          [ngClass]="{'is-invalid' : f.EmailInfluencer.errors && f.EmailInfluencer.touched}"
+          formControlName="EmailInfluencer" placeholder="Digite o e-mail do influenciador">
+          <div *ngIf="f.EmailInfluencer.errors?.required" class="invalid-feedback">
+            E-mail do influenciador é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label">Username do Canal <b style="color: red;">*</b></label>
+          <input type="text" class="form-control "
+          [class.is-invalid]="f.ChannelUsername.errors && f.ChannelUsername.touched"
+          formControlName="ChannelUsername" placeholder="Digite o username do canal">
+          <div *ngIf="f.ChannelUsername.errors?.required" class="invalid-feedback">
+            Username do canal é obrigatório
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="form-group col-md-4">
+          <label class="form-label">Plataforma <b style="color: red;">*</b></label>
+          <ngx-select
+            [class.is-invalid]="f.PlatformId.errors && f.PlatformId.touched"
+            [items]="platformList" optionValueField="PlatformId"
+            optionTextField="PlatformDs" formControlName="PlatformId" id="PlatformId"
+            [multiple]="false" [allowClear]="true" placeholder="-- SELECIONE --" [searchCallback]="filtrarSelect">
+          </ngx-select>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label">Numero de seguidores <b style="color: red;">*</b></label>
+          <input type="text" class="form-control "
+          [class.is-invalid]="f.NumSubs.errors && f.NumSubs.touched"
+          formControlName="NumSubs" placeholder="Digite o numero de seguidores do canal">
+          <div *ngIf="f.NumSubs.errors?.required" class="invalid-feedback">
+            Numero de seguidores é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-label">Tipo de Conteudo <b style="color: red;">*</b></label>
+          <input type="text" class="form-control "
+          [class.is-invalid]="f.ContentCategory.errors && f.ContentCategory.touched"
+          formControlName="ContentCategory" placeholder="Digite o tipo de conteudo do canal">
+          <div *ngIf="f.ContentCategory.errors?.required" class="invalid-feedback">
+            Tipo de Conteudo é obrigatório
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <div class="col text-end p-3" >
+          <button class="btn btn-outline-secondary mr-auto border" (click)="resetForm();">
+            Cancelar
+          </button>
+        </div>
+        <div class="col text-start p-3" *ngIf="condicaoTela">
+          <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarAlteracao()">
+            Salvar
+          </button>
+        </div>
+          <div class="col text-start p-3" *ngIf="!condicaoTela">
+            <button class="btn btn-success" [disabled]="!form.valid" (click)="salvarAlteracao()">
+            Gravar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+

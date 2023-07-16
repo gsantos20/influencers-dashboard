@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { forEach } from 'lodash';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { INgxSelectOption } from 'ngx-select-ex';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,8 @@ import { Platform } from 'src/app/models/Platform';
 import { Results } from 'src/app/models/results';
 import { InfluencerService } from 'src/app/services/influencer/influencer.service';
 import { PlatformService } from 'src/app/services/platform/platform.service';
+import { eModalType } from 'src/app/services/utils/eModalType';
+import { ModalConfig } from 'src/app/services/utils/modalConfig';
 import { removeAccents } from 'src/app/services/utils/remove-accents.validator';
 import { FunctionsService } from 'src/app/shared/functions/functions.service';
 
@@ -20,11 +22,30 @@ import { FunctionsService } from 'src/app/shared/functions/functions.service';
 })
 export class InfluencersListComponent implements OnInit {
 
+  modalConfigExcluir: ModalConfig = {
+    buttons: [
+      {
+        text: 'Fechar',
+        handler: () => this.modalRef?.hide(),
+        type: eModalType.Danger,
+        iconClass: "bi bi-x-lg"
+      },
+      {
+        text: 'Sim',
+        handler: () => this.confirm(),
+        type: eModalType.Success,
+        iconClass: "bi bi-check-lg"
+      },
+  ]
+  };
+
+
   constructor(
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private platformService: PlatformService,
     private influencerService: InfluencerService,
+    private bsModalService: BsModalService,
     private router: Router,
   ) { }
 
@@ -39,6 +60,8 @@ export class InfluencersListComponent implements OnInit {
 
   influencerList?: any[];
   modalRef?: BsModalRef;
+  message?: string
+  argumentos?: any
 
   ngOnInit() {
     this.getPlataform();
@@ -113,6 +136,43 @@ export class InfluencersListComponent implements OnInit {
         this.toastr.error('Selecione ao menos um filtro');
       }
 */
+  }
+
+  async openModal(evento: any, template: TemplateRef<any>, _id: number, nome: string) {
+    evento.stopPropagation();
+
+    this.argumentos = {
+      _id: _id
+    };
+
+    this.modalConfigExcluir.message = _id + ' - ' + nome;
+    this.modalRef = await this.bsModalService.show(template, {class : 'modal-md modal-danger' } )
+    this.modalConfigExcluir.id = this.modalRef?.id?.toString()
+  }
+
+  detailEvent(_id: number): void {
+    this.router.navigateByUrl(`/influencers/detail/${_id}`);
+  }
+
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.modalRef?.hide();
+
+    this.influencerService.DeleteInfluencer(this.argumentos._id).subscribe(
+      (result: any) => {
+        if ( result.success ){
+          this.toastr.success(result.data);
+            this.getInfluencers();
+        }
+      },
+      (error: any) => {
+        this.toastr.error(error);
+        // this.spinner.hide();
+      },
+      () => {
+        // this.spinner.hide();
+      }
+    )
   }
 
 
