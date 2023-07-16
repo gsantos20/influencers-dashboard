@@ -5,7 +5,8 @@
 
 ## 💻 Sobre o projeto
 
-♻️ Ecoleta - é uma forma de conectar empresas e entidades de coleta de resíduos orgânicos e inorgânicos as pessoas que precisam descartar seus resíduos de maneira ecológica.
+📲 Influencers Dashboard - é um projeto que visa desenvolver um painel de controle completo para gerenciamento de influenciadores. O Influencers Dashboard oferece uma solução centralizada para empresas e marcas que desejam acompanhar, interagir e gerenciar suas parcerias com influenciadores de forma eficaz.
+
 
 
 
