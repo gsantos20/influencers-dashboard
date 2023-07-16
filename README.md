@@ -16,7 +16,7 @@
 
 Este projeto é divido em duas partes:
  1. [BackEnd](https://github.com/gsantos20/api-influencers.git)  - [API](https://api-influencers-gsantos20.vercel.app/)
- 2. [FrontEnd](https://github.com/gsantos20/dashboard-influencers.git) - [Web](https://api-influencers-gsantos20.vercel.app/)
+ 2. [FrontEnd](https://github.com/gsantos20/dashboard-influencers.git) - [Web](https://influencers-dashboard-gsantos20.vercel.app/)
 
 💡 Tanto o Frontend precisam que o Backend esteja sendo executado para funcionar.
 
