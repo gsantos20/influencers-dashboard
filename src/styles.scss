@@ -102,3 +102,12 @@ ngx-select.is-invalid .form-control {
   width: calc(100% - 5rem);
   transition: all 0.5s ease;
 }
+
+.modal-danger > .modal-content{
+  border-top-color: var(--bs-danger);
+  --bs-modal-border-color: var(--bs-danger);
+  border-top-width: 10px;
+}
+
+
+

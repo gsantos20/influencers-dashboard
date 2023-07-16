@@ -18,6 +18,7 @@ import { ErrorService } from './services/utils/error.service';
 import { SharedComponentsModule } from './shared/shared-components.module';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { PagesModule } from './pages/pages.module';
+import { AjaxInterceptor } from './interceptors/ajax.interceptor';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PagesModule } from './pages/pages.module';
   providers: [
     ErrorService,
     provideEnvironmentNgxMask(),
+    { provide: HTTP_INTERCEPTORS, useClass: AjaxInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
