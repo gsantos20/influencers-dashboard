@@ -7,7 +7,7 @@ import { Results } from 'src/app/models/results';
 import { FunctionsService } from 'src/app/shared/functions/functions.service';
 import { LoginService } from '../login/login.service';
 import { User } from 'src/app/models/User';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { ErrorService } from '../utils/error.service';
 
 @Injectable({
