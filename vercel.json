@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "ng build --output-hashing=all --configuration production",
   "builds": [
     {
       "src": "dist/*",
