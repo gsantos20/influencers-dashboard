@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve -o -c development --port 4000",
-    "build": "ng build",
+    "build": "ng build --output-hashing=all --configuration production",
     "vercel-build": "ng build --output-hashing=all --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
