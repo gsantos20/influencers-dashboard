@@ -14,8 +14,8 @@
 ## 🚀 Como executar o projeto
 
 Este projeto é divido em duas partes:
- 1. [BackEnd](https://github.com/gsantos20/api-influencers.git)
- 2. [FrontEnd](https://github.com/gsantos20/dashboard-influencers.git)
+ 1. [BackEnd](https://github.com/gsantos20/api-influencers.git)  - [API](https://api-influencers-gsantos20.vercel.app/)
+ 2. [FrontEnd](https://github.com/gsantos20/dashboard-influencers.git) - [Web](https://api-influencers-gsantos20.vercel.app/)
 
 💡 Tanto o Frontend precisam que o Backend esteja sendo executado para funcionar.
 
@@ -29,7 +29,9 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ### Configurações local
 
-Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env, o modelo esta no arquivo .env.example do
+#### 🎲 Rodando o Backend ( API )
+
+Para rodar a API , você vai precisar adicionar as seguintes variáveis de ambiente no seu .env, o modelo esta no arquivo .env.example
 
 `MONGODB_URL` - Url de acesso do banco de dados mongo db.
 
@@ -48,10 +50,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 #### Exemplo : puxTF6gyKQ00VQyWZCGjyWGosxCD4vSo
 
 
-
-### Executando a aplicação
-
-#### 🎲 Rodando o Backend ( API )
+#### Executando a aplicação
 
 ```bash
 
@@ -71,6 +70,18 @@ $ npm run dev
 ```
 
 #### 🧭 Rodando a aplicação web (Frontend)
+
+Para rodar a API , você vai precisar adicionar as seguintes variáveis de ambiente no seu environment.development.ts , o modelo esta no arquivo environment.development.example.ts
+
+`production` - Define se a aplicação esta rodando em produção
+
+#### Exemplo : { production: false, ...outrosArgs }
+
+`apiURL` - Url de acesso da sua api
+
+#### Exemplo : { apiURL: "http://localhost:3000/api/v1", ...outrosArgs } 
+
+#### Executando a aplicação
 
 ```bash
 
@@ -250,7 +261,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 > Veja o arquivo  [package.json](https://github.com/gsantos20/api-dashboard/blob/main/package.json)
 
-#### **Frontend Web**  [Angular](https://angular.io/))  +  [TypeScript](https://www.typescriptlang.org/))
+#### **Frontend Web**  ([Angular](https://angular.io/)  +  [TypeScript](https://www.typescriptlang.org/))
 
 -   **[Angular Material](https://material.angular.io/)**
 -   **[Bootstrap](https://getbootstrap.com/)**
