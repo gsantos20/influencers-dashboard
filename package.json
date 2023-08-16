@@ -27,6 +27,7 @@
     "bootstrap-icons": "^1.10.3",
     "bootstrap-select": "^1.13.18",
     "bootswatch": "^5.2.3",
+    "chart.js": "^4.3.3",
     "jquery": "^3.6.3",
     "lodash": "^4.17.21",
     "lodash.isequal": "^4.5.0",
