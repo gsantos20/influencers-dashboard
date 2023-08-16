@@ -83,10 +83,9 @@ ngx-select.is-invalid .form-control {
   border-color: #dc3545 !important;
 }
 
-.home-section .container-fluid {
+.home-section > .container-fluid {
   width: auto !important;
-  padding-top: 67px;
-  // padding-right: 30px;
+  padding-top: 60px;
 }
 
 .home-section.full {
@@ -109,5 +108,21 @@ ngx-select.is-invalid .form-control {
   border-top-width: 10px;
 }
 
+.dropdown.no-arrow .dropdown-toggle::after {
+  display: none
+}
+
+.text-primary {
+  color: #4e73df!important;
+}
+
+.text-gray-400 {
+  color: #d1d3e2!important;
+}
+
+.card-header {
+  background-color: #f8f9fc;
+  border-bottom: 1px solid #e3e6f0;
+}
 
 
