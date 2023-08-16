@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'pages',
     component: PagesComponent,
     canActivate: [UserAuthGuard],
     children: [
