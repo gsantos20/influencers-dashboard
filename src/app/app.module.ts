@@ -35,7 +35,7 @@ import { AjaxInterceptor } from './interceptors/ajax.interceptor';
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      timeOut: 4000,
+      timeOut: 2000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
       progressBar: true
