@@ -23,13 +23,13 @@
                   >
                   <input
                     [class.is-invalid]="
-                      f.Email.errors && (f.Email.touched || f.Submited.value)
+                      f.email.errors && (f.email.touched || f.submited.value)
                     "
                     type="text"
                     class="form-control form-control-lg"
                     placeholder="Digite o e-mail"
-                    formControlName="Email"
-                    name="Email"
+                    formControlName="email"
+                    name="email"
                   />
                 </div>
               </div>
@@ -41,14 +41,14 @@
                   >
                   <input
                     [class.is-invalid]="
-                      f.Password.errors &&
-                      (f.Password.touched || f.Submited.value)
+                      f.password.errors &&
+                      (f.password.touched || f.submited.value)
                     "
                     type="password"
                     class="form-control fs-6 form-control-lg"
                     placeholder="Digite a senha"
-                    formControlName="Password"
-                    name="Password"
+                    formControlName="password"
+                    name="password"
                     requiredminlength="3"
                   />
                 </div>
@@ -98,11 +98,11 @@
           <input
             type="text"
             class="form-control"
-            formControlName="FirstName"
-            name="FirstName"
+            formControlName="firstName"
+            name="firstName"
             placeholder="Digite seu nome"
             [class.is-invalid]="
-              f2.FirstName.errors && (f2.FirstName.touched || f2.Submited.value)
+              f2.firstName.errors && (f2.firstName.touched || f2.submited.value)
             "
           />
         </div>
@@ -113,11 +113,11 @@
           <input
             type="text"
             class="form-control"
-            formControlName="LastName"
-            name="LastName"
+            formControlName="lastName"
+            name="lastName"
             placeholder="Digite seu sobrenome"
             [class.is-invalid]="
-              f2.LastName.errors && (f2.LastName.touched || f2.Submited.value)
+              f2.lastName.errors && (f2.lastName.touched || f2.submited.value)
             "
           />
         </div>
@@ -127,10 +127,10 @@
             type="text"
             class="form-control"
             placeholder="Digite seu e-mail"
-            formControlName="Email"
-            name="Email"
+            formControlName="email"
+            name="email"
             [class.is-invalid]="
-              f2.Email.errors && (f2.Email.touched || f2.Submited.value)
+              f2.email.errors && (f2.email.touched || f2.submited.value)
             "
           />
         </div>
@@ -142,16 +142,16 @@
             type="password"
             class="form-control"
             placeholder="Digite sua senha"
-            formControlName="Password"
-            name="Password"
+            formControlName="password"
+            name="password"
             (keyup)="
               matchPass(
-                form2.controls['Password'],
-                form2.controls['PasswordConfirm']
+                form2.controls['password'],
+                form2.controls['passwordConfirm']
               )
             "
             [class.is-invalid]="
-              f2.Password.errors && (f2.Password.touched || f2.Submited.value)
+              f2.password.errors && (f2.password.touched || f2.submited.value)
             "
           />
         </div>
@@ -163,21 +163,21 @@
             type="password"
             class="form-control"
             placeholder="Digite sua senha novamente"
-            formControlName="PasswordConfirm"
-            name="PasswordConfirm"
+            formControlName="passwordConfirm"
+            name="passwordConfirm"
             (keyup)="
               matchPass(
-                form2.controls['Password'],
-                form2.controls['PasswordConfirm']
+                form2.controls['password'],
+                form2.controls['passwordConfirm']
               )
             "
             [class.is-invalid]="
-              f2.PasswordConfirm.errors &&
-              (f2.PasswordConfirm.touched || f2.Submited.value)
+              f2.passwordConfirm.errors &&
+              (f2.passwordConfirm.touched || f2.submited.value)
             "
           />
           <div
-            *ngIf="!f2.PasswordConfirm.errors?.matchPass"
+            *ngIf="!f2.passwordConfirm.errors?.matchPass"
             class="invalid-feedback"
           >
             <sup>As senhas não coincidem</sup>

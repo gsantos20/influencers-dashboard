@@ -29,7 +29,7 @@ export class InfluencerService {
 
   public GetInfluencer(parametros: Partial<Influencer>): Observable<Results<Influencer[]>> {
     return this.http
-      .get<Results<Partial<User>>>(
+      .get<Results<Partial<Influencer>>>(
         `${environment.apiURL}/influencers?`
         + FunctionsService.jsonToQueryString(parametros)
       )
@@ -48,7 +48,7 @@ export class InfluencerService {
 
   public GetInfluencerById(_id: string): Observable<Results<Influencer>> {
     return this.http
-      .get<Results<Partial<User>>>(
+      .get<Results<Partial<Influencer>>>(
         `${environment.apiURL}/influencer/`
         + _id
       )
@@ -65,9 +65,9 @@ export class InfluencerService {
       );
   }
 
-  public CreateInfluencer(dados: Omit<User, '_id'>): Observable<Results<User>> {
+  public CreateInfluencer(dados: Omit<Influencer, '_id'>): Observable<Results<Influencer>> {
     return this.http
-      .post<Results<User[]>>(
+      .post<Results<Influencer[]>>(
         `${environment.apiURL}` + this.baseTelaURL,
         dados
       )
@@ -84,10 +84,10 @@ export class InfluencerService {
       );
   }
 
-  public UpdateInfluencer(dados: Partial<User>): Observable<Results<User>> {
+  public UpdateInfluencer(dados: Partial<Influencer>): Observable<Results<Influencer>> {
     const data = omit(dados, '_id')
     return this.http
-      .patch<Results<User[]>>(
+      .patch<Results<Influencer[]>>(
         `${environment.apiURL}${this.baseTelaURL}/` + dados._id,
         data
       )

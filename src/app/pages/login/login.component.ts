@@ -48,31 +48,31 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
 
     this.form = this.fb.group({
-      Email: ['', Validators.compose([
+      email: ['', Validators.compose([
           Validators.required,
           ValidationsService.ValidaEmail
         ])
       ],
-      Password: ['', Validators.compose([
+      password: ['', Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(100)
         ]
       )],
-      Submited: [false]
+      submited: [false]
     });
 
   }
 
-  matchPass(Password: AbstractControl, PasswordConfirm: AbstractControl) {
-    if(Password.value){
-      let pass = Password.value
-      let confirmPass = PasswordConfirm.value
+  matchPass(password: AbstractControl, passwordConfirm: AbstractControl) {
+    if(password.value){
+      let pass = password.value
+      let confirmPass = passwordConfirm.value
 
       if (confirmPass !== pass){
-        PasswordConfirm.setErrors({ matchPass: false })
+        passwordConfirm.setErrors({ matchPass: false })
       }else{
-        PasswordConfirm.setErrors(null);
+        passwordConfirm.setErrors(null);
       }
     }
     return null;
@@ -81,11 +81,11 @@ export class LoginComponent implements OnInit {
 
   Sign() {
     if (this.form.invalid){
-      this.form.controls['Submited'].setValue(true);
+      this.form.controls['submited'].setValue(true);
       this.toastr.error('Existe um ou mais campos pendentes ou com preenchimento incorreto.');;
       return
     }else{
-      this.form.controls['Submited'].setValue(false);
+      this.form.controls['submited'].setValue(false);
 
       const args = {
         ...this.form.getRawValue()
@@ -116,13 +116,13 @@ export class LoginComponent implements OnInit {
 
     SignUp() {
       if (this.form2.invalid){
-        this.form2.controls['Submited'].setValue(true);
+        this.form2.controls['submited'].setValue(true);
         this.toastr.error('Existe um ou mais campos pendentes ou com preenchimento incorreto.');;
         return
       }else{
         this.modalRef?.hide()
 
-        this.form2.controls['Submited'].setValue(false);
+        this.form2.controls['submited'].setValue(false);
 
         const args = {
           ...this.form2.getRawValue()
@@ -156,12 +156,12 @@ export class LoginComponent implements OnInit {
     evento.stopPropagation();
 
     this.form2 = this.fb.group({
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
-      Email: ['', Validators.compose([Validators.required, ValidationsService.ValidaEmail])],
-      Password: ['', Validators.required],
-      PasswordConfirm: ['', Validators.required],
-      Submited: [false]
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, ValidationsService.ValidaEmail])],
+      password: ['', Validators.required],
+      passwordConfirm: ['', Validators.required],
+      submited: [false]
     });
 
     const modalConfig: ModalOptions = { class: 'modal-lg', backdrop: 'static' }

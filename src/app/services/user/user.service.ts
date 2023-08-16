@@ -106,7 +106,7 @@ export class UserService {
     var getToken = localStorage.getItem('login');
     var getTokenCookie = this.functionsService.getCookie('login');
 
-    getToken ? (JSON.parse(atob(getToken)) as User)._id : null;
+    getToken ? (JSON.parse(atob(getToken)) as User).id : null;
     getTokenCookie ? "ok" : null;
 
     return getToken && getTokenCookie ? true : false;
