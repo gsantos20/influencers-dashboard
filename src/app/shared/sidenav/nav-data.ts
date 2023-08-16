@@ -2,12 +2,12 @@ import { ItemNav } from "src/app/models/itemNav";
 
 export const navbarData: ItemNav[] = [
   {
-      routeLink: '/',
+      routeLink: '/pages/dashboard',
       icon: 'fal fa-home',
       label: 'Dashboard'
   },
   {
-    routeLink: '/influencers/list',
+    routeLink: '/pages/influencers',
     icon: 'fal fa-users',
     label: 'Influencers'
 }
