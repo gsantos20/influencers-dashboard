@@ -9,14 +9,13 @@
 
 
 
-
 ---
 
 ## 🚀 Como executar o projeto
 
 Este projeto é divido em duas partes:
  1. [BackEnd](https://github.com/gsantos20/api-influencers.git)  - [API](https://api-influencers-gsantos20.vercel.app/)
- 2. [FrontEnd](https://github.com/gsantos20/dashboard-influencers.git) - [Web](https://api-influencers-gsantos20.vercel.app/)
+ 2. [FrontEnd](https://github.com/gsantos20/influencers-dashboard.git) - [Web](https://influencers-dashboard-gsantos20.vercel.app/)
 
 💡 Tanto o Frontend precisam que o Backend esteja sendo executado para funcionar.
 
@@ -34,17 +33,9 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 Para rodar a API , você vai precisar adicionar as seguintes variáveis de ambiente no seu .env, o modelo esta no arquivo .env.example
 
-`MONGODB_URL` - Url de acesso do banco de dados mongo db.
+`DATABASE_URL` - Url de acesso do banco de dados.
 
-#### Exemplo : mongodb+srv://cluster0.example.mongodb.net
-
-`MONGODB_USERNAME` - Usuario para acesso a base de dados
-
-#### Exemplo : user_example 
-
-`MONGODB_PASSWORD` - Senha do usuario para acesso a base de dados
-
-#### Exemplo : password_example
+#### Exemplo : mysql://test:test@localhost:3306/test
 
 `SECRET_JWT` - Token gerado aleatoriamente para autenticação
 
@@ -137,12 +128,14 @@ node dist/server.js
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `Username` | `string` | Nome de usuario unico |
-| `Email` | `string` | Email do usuario |
-| `FirstName` | `string` | Nome do Usuario |
-| `LastName` | `string` | Sobrenome do Usuario |
+| `username` | `string` | Nome de usuario unico |
+| `email` | `string` | Email do usuario |
+| `firstName` | `string` | Nome do Usuario |
+| `lastName` | `string` | Sobrenome do Usuario |
+| `createdAt` | `string` | Data de criação |
+| `updatedAt` | `string` | Data de atualização |
 
- Retorna um JSON de usuarios de acordo com os parametros.
+ Retorna um Array de objetos de usuarios de acordo com os parametros.
 
 ### 
 
@@ -152,11 +145,11 @@ node dist/server.js
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `Username` | `string` | **Obrigatório**. Nome de usuario unico |
-| `Password` | `string` | **Obrigatório**. Senha do usuario |
-| `Email` | `string` | **Obrigatório**. Email do Usuario |
-| `FirstName` | `string` | **Obrigatório**. Nome do Usuario |
-| `LastName` | `string` | **Obrigatório**. Sobrenome do Usuario |
+| `username` | `string` | **Obrigatório**. Nome de usuario unico |
+| `email` | `string` | **Obrigatório**. Email do Usuario |
+| `password` | `string` | **Obrigatório**. Senha do usuario |
+| `firstName` | `string` | **Obrigatório**. Nome do Usuario |
+| `lastName` | `string` | **Obrigatório**. Sobrenome do Usuario |
 
 Retorna um JSON com o usuario cadastrado.
 
@@ -168,8 +161,8 @@ Retorna um JSON com o usuario cadastrado.
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `Username` | `string` | **Obrigatório**. Nome de usuario unico |
-| `Password` | `string` | **Obrigatório**. Senha do usuario |
+| `username` | `string` | **Obrigatório**. Nome de usuario unico |
+| `password` | `string` | **Obrigatório**. Senha do usuario |
 
 Retorna um objeto com um token de login do usuario.
 
@@ -196,25 +189,33 @@ Deleta um usuario de acordo com o id.
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `firstName`      | `string` | Nome do influenciador |
-| `lastName`      | `string` | Sobrenome do influenciador |
-| `email`      | `string` | email do influenciador |
-| `Bearear Token`      | `Bearer` | Token de autenticação de login |
+| `NameInfluencer`      | `string` | Nome do influenciador |
+| `EmailInfluencer`      | `string` | E-mail do influenciador |
+| `ChannelUsername`      | `string` | Username do canal do influenciador |
+| `PlatformId`      | `number` | Id da Plataforma do criador de conteudo |
+| `NumSubs`      | `number` | Numero de seguidores |
+| `ContentCategory`      | `number` | Tipo de conteudo |
 
-Retorna um JSON de influenciadores de acordo com os parametros.
+ Retorna um Array de objetos de influenciadores de acordo com os parametros.
 
 ### 
 
 ```http
-  PATCH /api/v1/influencer/:id
+  PATCH /api/v1/influencer/:_id
 ```
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | Identificador do influenciador |      
+| `id`      | `string` | Identificador do influenciador |  
 | `Bearear Token`      | `Bearer` | Token de autenticação de login |
+| `NameInfluencer`      | `string` | Nome do influenciador |
+| `EmailInfluencer`      | `string` | E-mail do influenciador |
+| `ChannelUsername`      | `string` | Username do canal do influenciador |
+| `PlatformId`      | `number` | Id da Plataforma do criador de conteudo |
+| `NumSubs`      | `number` | Numero de seguidores |
+| `ContentCategory`      | `number` | Tipo de conteudo |
 
-Atualiza um influenciador de acordo com o id.
+Atualiza um influenciador de acordo com o id e parametros utilizados.
 
 ### 
 
@@ -228,6 +229,20 @@ Atualiza um influenciador de acordo com o id.
 | `Bearear Token`      | `Bearer` | Token de autenticação de login |
 
 Deleta um influenciador de acordo com o id.
+
+ - #### Plataformas
+
+```http
+  GET /api/v1/platforms
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `PlatformId` | `string` | Id da plataforma |
+| `PlatformDs` | `string` | Nome da plataforma |
+| `Active` | `string` | Status da plataforma |
+
+ Retorna um Array de objetos de plataformas de acordo com os parametros.
 
 
 
@@ -247,7 +262,7 @@ Deleta um influenciador de acordo com o id.
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-#### **Backend API**  ([Node.js](https://nodejs.org/en)  +  [TypeScript](https://www.typescriptlang.org/) + [Express](https://expressjs.com/pt-br/) + [MongoDB](https://www.mongodb.com/))
+#### **Backend API**  ([Node.js](https://nodejs.org/en)  +  [TypeScript](https://www.typescriptlang.org/) + [Express](https://expressjs.com/pt-br/) + [Prisma](https://www.prisma.io/))
 
 -   **[Bcryptjs](https://www.npmjs.com/package/bcryptjs)**
 -   **[Cors](https://www.npmjs.com/package/cors)**
